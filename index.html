@@ -1,52 +1,70 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Campus Bakery | POS</title>
+  <meta name="theme-color" content="#f7f5ef">
+  <meta name="description" content="Campus Bakery point of sale. Fresh bakes, simple checkout.">
+  <title>Campus Bakery · Point of Sale</title>
   <link rel="stylesheet" href="assets/tailwind.css">
   <script type="module" src="app.js"></script>
 </head>
-<body class="text-stone-800 antialiased">
-  <header class="border-b border-stone-200 bg-white">
-    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
-      <a href="./" class="flex items-center gap-3 font-semibold"><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-900">CB</span><span>Campus Bakery<span class="mt-0.5 block text-xs font-normal text-stone-500">Fresh bakes. Campus favorites.</span></span></a>
-      <span class="rounded-full bg-stone-100 px-3 py-2 text-xs text-stone-600">Cashier workspace</span>
-    </div>
-  </header>
-  <main class="mx-auto max-w-7xl px-5 py-8 sm:px-8">
-    <div class="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p class="mb-2 text-xs font-semibold uppercase tracking-widest text-amber-800">Campus counter</p><h1 class="text-3xl font-semibold tracking-tight">Point of sale</h1><p class="mt-2 text-sm text-stone-500">Your everyday bakery menu, all in one place.</p></div><p class="text-sm text-stone-500">Prices in Philippine pesos</p></div>
-    <div id="pos-workspace" class="grid items-start gap-6 lg:grid-cols-[1fr_380px]">
-      <section aria-labelledby="catalog-heading">
-        <div class="mb-5 flex flex-wrap items-center justify-between gap-4"><h2 id="catalog-heading" class="text-lg font-semibold">Our menu <span class="ml-2 text-sm font-normal text-stone-400">6 products</span></h2><label class="block w-full sm:w-64"><span class="sr-only">Search products</span><input id="search" type="search" placeholder="Search products…" class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-amber-700 focus:ring-2 focus:ring-amber-100"></label></div>
-        <div class="mb-5 flex flex-wrap gap-2" role="group" aria-label="Product categories"><button class="category" data-category="all" aria-pressed="true">All items</button><button class="category" data-category="bread" aria-pressed="false">Breads</button><button class="category" data-category="sweet" aria-pressed="false">Sweet treats</button><button class="category" data-category="drink" aria-pressed="false">Drinks</button></div>
-        <div id="product-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"></div>
-        <p id="empty-search" class="rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500" role="status" hidden>No products match your search.</p>
-      </section>
-      <aside class="rounded-2xl border border-stone-200 bg-white p-6" aria-labelledby="order-heading">
-        <div class="flex items-center justify-between"><h2 id="order-heading" class="text-lg font-semibold">Current order</h2><span id="item-count" class="rounded-lg bg-stone-100 px-2.5 py-1 text-xs text-stone-500">0 items</span></div>
-        <div class="my-6 border-t border-stone-100"></div>
-        <p id="empty-cart" class="py-12 text-center text-sm text-stone-500">No items yet. Add products from the menu.</p>
-        <div id="cart-items" class="mb-5 space-y-4"></div>
-        <div class="border-t border-stone-100 pt-5"><div class="flex justify-between text-sm text-stone-500"><span>Subtotal</span><span id="subtotal">₱0.00</span></div><div class="my-5 flex justify-between text-xl font-semibold"><span>Total</span><span id="total">₱0.00</span></div>
-          <form id="payment-form" novalidate>
-            <label for="cash" class="mb-2 block text-sm font-medium">Cash received (₱)</label>
-            <input id="cash" type="number" inputmode="decimal" min="0" max="1000000" step="0.01" placeholder="0.00" required disabled aria-describedby="payment-error" class="w-full rounded-xl border border-stone-300 px-4 py-3">
-            <p id="payment-error" role="alert" class="mt-2 text-sm text-red-700"></p>
-            <div class="my-4 flex justify-between text-sm"><span>Change</span><strong id="change">—</strong></div>
-            <button id="confirm-payment" type="submit" disabled class="primary-button w-full">Confirm payment</button>
-          </form>
+<body>
+  <div class="app-shell">
+    <header class="sidebar">
+      <a class="brand" href="./" aria-label="Campus Bakery home"><span class="brand-symbol" aria-hidden="true">cb<span>✳</span></span><span class="brand-name">campus<br>bakery<span>FRESH FROM CAMPUS</span></span></a>
+      <nav class="nav-list" aria-label="Main navigation">
+        <button class="nav-button active" data-view="pos" aria-current="page"><span data-icon="grid"></span>Point of sale<span class="nav-dot"></span></button>
+        <button class="nav-button" data-view="sales"><span data-icon="receipt"></span>Sales history</button>
+      </nav>
+      <div class="header-actions"><button id="show-alerts" class="secondary-button" aria-haspopup="dialog"><span data-icon="bell"></span>Alerts <span id="alert-count" class="alert-count" hidden>0</span></button><div class="operator"><span class="avatar">CB</span><div><strong>Campus counter</strong><small>Cashier workspace</small></div></div></div>
+    </header>
+    <main class="workspace">
+      <div class="topbar"><div class="breadcrumbs">Campus Bakery <span>/</span> <strong id="breadcrumb">Point of sale</strong></div><div class="date-chip"><span data-icon="calendar"></span><time id="today"></time></div></div>
+      <section id="pos-view" class="view">
+        <div class="page-heading"><div><div class="eyebrow">CASHIER WORKSPACE</div><h1>Point of sale</h1><p>Select products, review the order, and collect payment.</p></div><div class="open-badge"><span class="status-dot"></span>Ready for orders</div></div>
+        <div class="overview-stats" aria-label="Today's performance"><div><span class="stat-symbol" data-icon="wallet"></span><div><small>Today’s revenue</small><strong id="overview-total">₱0.00</strong></div></div><div><span class="stat-symbol" data-icon="receipt"></span><div><small>Transactions</small><strong id="overview-orders">0</strong></div></div><div><span class="stat-symbol" data-icon="bag"></span><div><small>Items sold</small><strong id="overview-items">0</strong></div></div><div><span class="stat-symbol" data-icon="chart"></span><div><small>Average order</small><strong id="overview-average">₱0.00</strong></div></div></div>
+        <div class="pos-layout">
+          <section class="catalog" aria-label="Product menu">
+            <div class="menu-toolbar"><div><h2>Product catalog <span class="count-tag">6 products</span></h2><p>Click a product to add it to the order.</p></div><label class="search-box"><span data-icon="search"></span><input id="search" type="search" placeholder="Search products…" aria-label="Search products"><kbd>/</kbd></label></div>
+            <div class="filter-row" role="group" aria-label="Product category"><button class="filter active" data-category="all" aria-pressed="true">All items <span>6</span></button><button class="filter" data-category="bread" aria-pressed="false">Breads <span>4</span></button><button class="filter" data-category="sweet" aria-pressed="false">Sweet treats <span>1</span></button><button class="filter" data-category="drink" aria-pressed="false">Drinks <span>1</span></button></div>
+            <div id="product-grid" class="product-grid"></div>
+            <div id="no-products" class="empty-search" hidden><span data-icon="search"></span><h3>No matching favorites</h3><p>Try another name or category.</p><button id="reset-search" class="text-button">Show all items</button></div>
+            <div class="menu-footnote"><span data-icon="sparkles"></span>Freshly baked campus favorites<span>All prices in PHP</span></div>
+          </section>
+          <aside class="order-panel" aria-label="Current order">
+            <div class="order-heading"><div><span class="eyebrow">ORDER SUMMARY</span><h2>Current order <span id="cart-count" class="count-tag">0</span></h2></div><button id="clear-cart" class="icon-button" aria-label="Clear current order" title="Clear order" disabled><span data-icon="trash"></span></button></div>
+            <div class="order-type" role="group" aria-label="Order type"><button class="active" data-type="Takeaway" aria-pressed="true"><span data-icon="bag"></span>Takeaway</button><button data-type="Dine-in" aria-pressed="false"><span data-icon="cup"></span>Dine-in</button></div>
+            <div class="cart-columns"><span>Product / Quantity</span><span>Subtotal</span></div>
+            <div id="cart-items" class="cart-items"></div>
+            <div id="empty-cart" class="empty-cart"><div class="empty-cart-art"><span data-icon="bag"></span></div><h3>No items yet</h3><p>Select a product from the catalog<br>to build your customer’s order.</p></div>
+            <div class="order-bottom"><div class="summary-line"><span>Subtotal</span><strong id="subtotal">₱0.00</strong></div><div class="summary-line muted"><span>Items in order</span><span id="item-count">0 items</span></div><div class="total-line"><span>Total</span><strong id="total">₱0.00</strong></div><button id="checkout" class="primary-button checkout-button" disabled><span data-icon="wallet"></span>Charge <span id="charge-total">₱0.00</span><span data-icon="arrow"></span></button><p class="checkout-note"><span data-icon="lock"></span>Cash payment · Change calculated for you</p></div>
+          </aside>
         </div>
-      </aside>
-    </div>
-    <section id="receipt" hidden class="mx-auto max-w-2xl rounded-2xl border border-stone-200 bg-white p-6 sm:p-8" aria-labelledby="receipt-heading">
-      <h2 id="receipt-heading" tabindex="-1" class="text-2xl font-semibold text-green-800">Payment confirmed</h2>
-      <p class="mt-2 text-sm text-stone-500">Thank you for shopping at Campus Bakery. Your digital receipt is below.</p>
-      <div id="receipt-details" class="my-6"></div>
-      <button id="new-transaction" class="primary-button w-full">New transaction</button>
-    </section>
-    <p id="cart-status" class="sr-only" role="status" aria-live="polite"></p>
-    <footer class="mt-10 border-t border-stone-200 pt-5 text-xs text-stone-400">Campus Bakery · Point of sale</footer>
-  </main>
+      </section>
+      <section id="sales-view" class="view" hidden>
+        <div class="page-heading"><div><div class="eyebrow">TRANSACTION RECORDS</div><h1>Sales history</h1><p>Review completed payments, access receipts, and export your sales.</p></div><button id="export-sales" class="secondary-button"><span data-icon="download"></span>Export CSV</button></div>
+        <div class="sales-stats"><div><span>Today’s sales</span><strong id="daily-total">₱0.00</strong><small>Completed cash payments</small></div><div><span>Today’s orders</span><strong id="daily-orders">0</strong><small>One happy customer at a time</small></div><div><span>Today’s items sold</span><strong id="daily-items">0</strong><small>Fresh from the campus counter</small></div></div>
+        <div class="history-panel"><div class="history-heading"><h2>Transaction register</h2><label class="search-box"><span data-icon="search"></span><input id="sales-search" type="search" placeholder="Search receipt or product…" aria-label="Search transactions"></label></div><div class="sales-columns"><span>Reference / Date</span><span>Order details</span><span>Amount</span><span>Receipt</span></div><div id="sales-list"></div></div>
+      </section>
+      <footer class="workspace-footer"><span>© <span id="year"></span> Campus Bakery · Point of Sale</span><span>Single counter <span>•</span> Browser storage</span></footer>
+    </main>
+  </div>
+  <dialog id="payment-dialog" class="modal" aria-labelledby="payment-heading">
+    <form id="payment-form" novalidate>
+      <div class="modal-heading"><div><div class="eyebrow">CASH CHECKOUT</div><h2 id="payment-heading">Collect payment</h2></div><button type="button" class="icon-button" data-close="payment-dialog" aria-label="Close payment"><span data-icon="close"></span></button></div>
+      <div class="payment-total"><span>Amount due</span><strong id="payment-total"></strong><small id="payment-item-count"></small></div>
+      <label class="field-label" for="cash-input">Cash received</label><div class="cash-field"><span>₱</span><input id="cash-input" inputmode="decimal" type="number" min="0" step="0.01" placeholder="0.00" required autocomplete="off" aria-describedby="payment-error" aria-invalid="false"></div>
+      <div class="cash-shortcuts"><button type="button" data-cash="exact">Exact amount</button><button type="button" data-cash="100">₱100</button><button type="button" data-cash="200">₱200</button><button type="button" data-cash="500">₱500</button></div>
+      <div class="change-row"><span>Change to give</span><strong id="change-amount">₱0.00</strong></div><p id="payment-error" class="error-message" role="alert"></p>
+      <button id="complete-payment" type="submit" class="primary-button w-full"><span data-icon="check"></span>Complete payment</button><p class="modal-note">The sale is recorded when you complete payment.</p>
+    </form>
+  </dialog>
+  <dialog id="receipt-dialog" class="modal receipt-modal" aria-labelledby="receipt-heading"><div class="modal-heading"><div><div class="eyebrow">THANK YOU!</div><h2 id="receipt-heading">A little joy, served.</h2></div><button class="icon-button" data-close="receipt-dialog" aria-label="Close receipt"><span data-icon="close"></span></button></div><p id="payment-confirmation" class="payment-confirmation" role="status" hidden>Cash payment received and transaction saved. Your receipt is below.</p><div id="receipt-content"></div><div class="receipt-actions"><button id="print-receipt" class="secondary-button"><span data-icon="print"></span>Print receipt</button><button id="new-order" class="primary-button">New order<span data-icon="arrow"></span></button></div></dialog>
+  <dialog id="clear-dialog" class="modal small-modal" aria-labelledby="clear-heading"><div class="modal-heading"><h2 id="clear-heading">Clear this order?</h2><button class="icon-button" data-close="clear-dialog" aria-label="Close confirmation"><span data-icon="close"></span></button></div><p>The items in your current order will be removed.</p><div class="receipt-actions"><button class="secondary-button" data-close="clear-dialog">Keep order</button><button id="confirm-clear" class="primary-button">Clear order</button></div></dialog>
+  <dialog id="alerts-dialog" class="modal" aria-labelledby="alerts-heading"><div class="modal-heading"><div><div class="eyebrow">CURRENT SESSION</div><h2 id="alerts-heading">Activity & alerts</h2></div><button class="icon-button" data-close="alerts-dialog" aria-label="Close alerts"><span data-icon="close"></span></button></div><p class="alerts-intro">Recent counter activity and messages from this session.</p><div id="alerts-list"></div></dialog>
+  <div id="toast" class="toast-stack" aria-label="Notifications"></div>
+  <div id="print-area"></div>
 </body>
 </html>
+
