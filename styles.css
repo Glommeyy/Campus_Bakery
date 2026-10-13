@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@source "./index.html";
+@source "./app.js";
+@theme { --font-sans: "Segoe UI", Arial, sans-serif; }
+body { background-color: #faf7f2; }
+.category { border: 1px solid #e7e5e4; border-radius: 999px; background: white; padding: 0.6rem 1rem; color: #57534e; font-size: 0.875rem; cursor: pointer; }
+.category[aria-pressed="true"] { background: #78350f; border-color: #78350f; color: white; }
+.category:focus-visible { outline: 2px solid #b45309; outline-offset: 3px; }
+[hidden] { display: none !important; }

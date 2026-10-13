@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Bakery | POS</title>
+  <link rel="stylesheet" href="assets/tailwind.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body class="text-stone-800 antialiased">
+  <header class="border-b border-stone-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 sm:px-8">
+      <a href="./" class="flex items-center gap-3 font-semibold"><span class="flex h-11 w-11 items-center justify-center rounded-2xl bg-amber-100 text-amber-900">CB</span><span>Campus Bakery<span class="mt-0.5 block text-xs font-normal text-stone-500">Fresh bakes. Campus favorites.</span></span></a>
+      <span class="rounded-full bg-stone-100 px-3 py-2 text-xs text-stone-600">Cashier workspace</span>
+    </div>
+  </header>
+  <main class="mx-auto max-w-7xl px-5 py-8 sm:px-8">
+    <div class="mb-8 flex flex-wrap items-end justify-between gap-4"><div><p class="mb-2 text-xs font-semibold uppercase tracking-widest text-amber-800">Campus counter</p><h1 class="text-3xl font-semibold tracking-tight">Point of sale</h1><p class="mt-2 text-sm text-stone-500">Your everyday bakery menu, all in one place.</p></div><p class="text-sm text-stone-500">Prices in Philippine pesos</p></div>
+    <div class="grid items-start gap-6 lg:grid-cols-[1fr_340px]">
+      <section aria-labelledby="catalog-heading">
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-4"><h2 id="catalog-heading" class="text-lg font-semibold">Our menu <span class="ml-2 text-sm font-normal text-stone-400">6 products</span></h2><label class="block w-full sm:w-64"><span class="sr-only">Search products</span><input id="search" type="search" placeholder="Search products…" class="w-full rounded-xl border border-stone-200 bg-white px-4 py-3 text-sm outline-none focus:border-amber-700 focus:ring-2 focus:ring-amber-100"></label></div>
+        <div class="mb-5 flex flex-wrap gap-2" role="group" aria-label="Product categories"><button class="category" data-category="all" aria-pressed="true">All items</button><button class="category" data-category="bread" aria-pressed="false">Breads</button><button class="category" data-category="sweet" aria-pressed="false">Sweet treats</button><button class="category" data-category="drink" aria-pressed="false">Drinks</button></div>
+        <div id="product-grid" class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3"></div>
+        <p id="empty-search" class="rounded-2xl border border-dashed border-stone-300 p-10 text-center text-sm text-stone-500" role="status" hidden>No products match your search.</p>
+      </section>
+      <aside class="rounded-2xl border border-stone-200 bg-white p-6" aria-labelledby="order-heading">
+        <div class="flex items-center justify-between"><h2 id="order-heading" class="text-lg font-semibold">Current order</h2><span class="rounded-lg bg-stone-100 px-2.5 py-1 text-xs text-stone-500">0 items</span></div>
+        <div class="my-6 border-t border-stone-100"></div>
+        <div class="flex min-h-64 flex-col items-center justify-center text-center"><span class="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-amber-50 text-amber-800" aria-hidden="true"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg></span><h3 class="font-medium">No items yet</h3><p class="mt-2 text-sm text-stone-500">Your order items will appear here.</p></div>
+        <div class="border-t border-stone-100 pt-5"><div class="flex justify-between text-sm text-stone-500"><span>Subtotal</span><span>₱0.00</span></div><div class="my-5 flex justify-between text-xl font-semibold"><span>Total</span><span>₱0.00</span></div><button disabled class="w-full cursor-not-allowed rounded-xl bg-stone-100 py-3.5 text-sm font-semibold text-stone-400" aria-describedby="setup-note">Checkout</button><p id="setup-note" class="mt-3 text-center text-xs leading-5 text-stone-500">Interface preview · Checkout is not enabled.</p></div>
+      </aside>
+    </div>
+    <footer class="mt-10 border-t border-stone-200 pt-5 text-xs text-stone-400">Campus Bakery · POS interface</footer>
+  </main>
+</body>
+</html>

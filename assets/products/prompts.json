@@ -1,0 +1,36 @@
+{
+  "generator": "Built-in image_gen",
+  "style": "Photorealistic bakery product photography with warm beige backgrounds and natural window light.",
+  "images": [
+    {
+      "id": "pandesal",
+      "file": "pandesal.jpg",
+      "prompt": "Use case: product-mockup. Realistic food photograph for Filipino campus bakery menu. Exactly FIVE individual Filipino pandesal rolls, all five clearly visible, separate and easy to count: three rolls in the back row and two rolls in the front row, on a plain cream plate. Each roll has golden fine breadcrumb crust, soft natural imperfect baked texture. Slight overhead three-quarter view to show all five rolls without hiding any. Landscape 3:2 frame, warm beige tabletop, cream backdrop, soft window light, generous margin. Photorealistic, no illustration, no render, no text, no logo, no hands, no extra bread. Count must be exactly five."
+    },
+    {
+      "id": "ensaymada",
+      "file": "ensaymada.jpg",
+      "prompt": "Use case: product-mockup. Asset type: realistic food product photograph for a campus bakery POS menu. Subject: One authentic Filipino ensaymada: a soft coiled golden brioche bun generously topped with butter, fine sugar and grated pale yellow cheese. Style: photorealistic food photography, actual baked-food textures, not illustration or 3D rendering. Scene: simple warm beige tabletop and uncluttered soft cream background. Soft natural window lighting, gentle shadows. Composition: landscape 3:2 framing, centered product fully visible with generous margins, three-quarter view. Appealing but ordinary affordable Filipino campus bakery food. No lettering, price labels, branding, hands, people, extra foods, borders or watermark."
+    },
+    {
+      "id": "spanish",
+      "file": "spanish.jpg",
+      "prompt": "Use case: product-mockup. Asset type: realistic food product photograph for a campus bakery POS menu. Subject: Two authentic Filipino Spanish bread rolls, short oblong rolled buns with fine breadcrumb crust and golden brown ends; one slightly opened end revealing buttery sweet filling. Style: photorealistic food photography, actual baked-food textures, not illustration or 3D rendering. Scene: simple warm beige tabletop and uncluttered soft cream background. Soft natural window lighting, gentle shadows. Composition: landscape 3:2 framing, centered product fully visible with generous margins, three-quarter view. Appealing but ordinary affordable Filipino campus bakery food. No lettering, price labels, branding, hands, people, extra foods, borders or watermark."
+    },
+    {
+      "id": "cupcake",
+      "file": "cupcake.jpg",
+      "prompt": "Use case: product-mockup. Asset type: realistic food product photograph for a campus bakery POS menu. Subject: One chocolate cupcake in a brown paper liner, moist dark chocolate cake topped with a modest swirl of real chocolate frosting. Style: photorealistic food photography, actual baked-food textures, not illustration or 3D rendering. Scene: simple warm beige tabletop and uncluttered soft cream background. Soft natural window lighting, gentle shadows. Composition: landscape 3:2 framing, centered product fully visible with generous margins, three-quarter view. Appealing but ordinary affordable Filipino campus bakery food. No lettering, price labels, branding, hands, people, extra foods, borders or watermark."
+    },
+    {
+      "id": "loaf",
+      "file": "loaf.jpg",
+      "prompt": "Use case: product-mockup. Asset type: realistic food product photograph for a campus bakery POS menu. Subject: One simple white sandwich bread loaf with golden brown domed crust, two slices cut from its front showing soft white crumb. Style: photorealistic food photography, actual baked-food textures, not illustration or 3D rendering. Scene: simple warm beige tabletop and uncluttered soft cream background. Soft natural window lighting, gentle shadows. Composition: landscape 3:2 framing, centered product fully visible with generous margins, three-quarter view. Appealing but ordinary affordable Filipino campus bakery food. No lettering, price labels, branding, hands, people, extra foods, borders or watermark."
+    },
+    {
+      "id": "coffee",
+      "file": "coffee.jpg",
+      "prompt": "Use case: product-mockup. Asset type: realistic food product photograph for a campus bakery POS menu. Subject: One cream ceramic cup filled with black brewed coffee on a matching saucer, subtle steam, no milk, no latte art. Style: photorealistic food photography, actual baked-food textures, not illustration or 3D rendering. Scene: simple warm beige tabletop and uncluttered soft cream background. Soft natural window lighting, gentle shadows. Composition: landscape 3:2 framing, centered product fully visible with generous margins, three-quarter view. Appealing but ordinary affordable Filipino campus bakery food. No lettering, price labels, branding, hands, people, extra foods, borders or watermark."
+    }
+  ]
+}
