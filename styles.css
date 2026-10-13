@@ -7,3 +7,11 @@ body { background-color: #faf7f2; }
 .category[aria-pressed="true"] { background: #78350f; border-color: #78350f; color: white; }
 .category:focus-visible { outline: 2px solid #b45309; outline-offset: 3px; }
 [hidden] { display: none !important; }
+.primary-button { border-radius: 0.75rem; background: #78350f; color: white; padding: 0.8rem 1rem; font-size: 0.875rem; font-weight: 600; cursor: pointer; }
+.primary-button:hover { background: #92400e; }
+button:disabled { background: #f5f5f4; color: #a8a29e; cursor: not-allowed; }
+button:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid #b45309; outline-offset: 3px; }
+.quantity-button { border: 1px solid #d6d3d1; border-radius: 0.5rem; min-width: 2rem; min-height: 2rem; cursor: pointer; }
+.receipt-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.receipt-table th, .receipt-table td { padding: 0.75rem 0.25rem; border-bottom: 1px solid #e7e5e4; text-align: right; }
+.receipt-table th:first-child, .receipt-table td:first-child { text-align: left; }
